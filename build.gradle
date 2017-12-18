@@ -30,6 +30,7 @@ dependencies {
     //新的插件开始
     compile 'org.grails.plugins:qrcode:0.9'
     compile 'org.grails.plugins:mail:2.0.0'
+    compile 'domurtag.plugins:grails-simple-captcha:1.0.0-grails3'
     //新的插件结束
 
     compile "org.springframework.boot:spring-boot-starter-logging"
