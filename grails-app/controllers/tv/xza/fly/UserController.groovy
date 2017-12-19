@@ -6,83 +6,12 @@ import static org.springframework.http.HttpStatus.*
 class UserController {
 
     UserService userService
-    def mailService
-    def simpleCaptchaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond userService.list(params), model:[userCount: userService.count()]
-    }
-
-    def login(User user) {
-
-    }
-    def logout(User user) {
-        session.user = null;
-        return render(view: 'login')
-    }
-    def regUser(User user) {
-        flash.title = "注册结果"
-        if (user == null) {
-            flash.message ="帐号秘密为空"
-            return render(view: 'tip')
-        }
-        boolean captchaValid = simpleCaptchaService.validateCaptcha(params.vercode)
-        if(!captchaValid){
-            flash.message ="验证码不正确"
-            return render(view: 'tip')
-        }
-        def u = User.findByEmail(user.email)
-        if(u!=null){
-            flash.message ="${user.email}帐号已经注册，请尝试找回密码"
-            return render(view: 'tip')
-        }
-        if(user.password != params.repass){
-            flash.message ="两次密码不相同"
-            return render(view: 'tip')
-        }
-        user.role="user"
-        user.save()
-        flash.message ="帐号${user.email}注册成功，请查收邮件"
-        mailService.sendMail {
-            from "chen.min@bupt.edu.cn"
-            to user.email
-            subject "New user"+flash.message
-            text "A new user has been created"
-        }
-        return render(view: 'tip')
-    }
-
-
-    def check(User user) {
-        flash.title = "登录结果"
-        if (user == null) {
-            flash.message ="帐号秘密为空"
-            return render(view: 'tip')
-        }
-        boolean captchaValid = simpleCaptchaService.validateCaptcha(params.vercode)
-        if(!captchaValid){
-            flash.message ="验证码不正确"
-            return render(view: 'tip')
-        }
-        def u = User.findByEmail(user.email)
-        if(u==null){
-            flash.message ="${user.email}帐号不存在"
-            return render(view: 'tip')
-        }
-        if(user.password == u.password){
-            session.user = u;
-            flash.message ="密码ok"
-        }else{
-            flash.message ="密码error"
-        }
-        return render(view: 'tip')
-    }
-
-    def reg(User user) {
-
     }
 
     def show(Long id) {
