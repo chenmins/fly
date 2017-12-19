@@ -18,7 +18,7 @@ info:
         grailsVersion: '@info.app.grailsVersion@'
 spring:
     main:
-        banner-mode: "off"
+        banner-mode: 'off'
     groovy:
         template:
             check-template-location: false
@@ -31,6 +31,11 @@ endpoints:
 
 ---
 grails:
+    mail:
+        host : 'mail.bupt.edu.cn'
+        port : '25'
+        username : 'chen.min@bupt.edu.cn'
+        password : '真是密码'
     mime:
         disable:
             accept:
@@ -109,7 +114,7 @@ environments:
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         dataSource:
-            dbCreate: none
+            dbCreate: update
             url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true
