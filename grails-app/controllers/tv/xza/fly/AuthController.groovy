@@ -49,7 +49,6 @@ class AuthController {
         u.password=rnd()
         userService.save(u)
         mailService.sendMail {
-            from "chen.min@bupt.edu.cn"
             to user.email
             subject "New user"+flash.message
             text "新的密码：${u.password},请即时修改"
@@ -88,7 +87,6 @@ class AuthController {
         user.save()
         flash.message ="帐号${user.email}注册成功，请查收邮件"
         mailService.sendMail {
-            from "chen.min@bupt.edu.cn"
             to user.email
             subject "New user"+flash.message
             text "A new user has been created"

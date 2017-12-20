@@ -4,7 +4,7 @@ package fly
 class AuthInterceptor {
 
     AuthInterceptor() {
-        match(controller:"user") // using strings
+        match(controller:"self")// using strings
         //match(controller: ~/(author|publisher)/) // using regex
         //matchAll().excludes(controller:"user")
     }
@@ -13,21 +13,18 @@ class AuthInterceptor {
         return session.user!=null;
     }
 
-    boolean isAdmin(){
-        return session.user.role=='admin';
-    }
-
     boolean before() {
-//        return true
-        if(isLogin()&&isAdmin())
+        if(isLogin()){
             return true
-        else
+        }else{
+            redirect(controller: 'auth', action: 'login')
             return false
+        }
     }
 
     boolean after() { true }
 
     void afterView() {
-        render '错误啦'
+//        render '错误啦'
     }
 }
