@@ -5,7 +5,7 @@ class User {
     String username
     String password
     String email
-    String role ="user"
+    Roles role = Roles.user
 
     static constraints = {
     }
