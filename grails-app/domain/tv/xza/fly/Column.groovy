@@ -4,7 +4,11 @@ class Column {
 
     String columnName
 
-    Roles role
+    boolean top = false
+
+    boolean  badge = false
+
+    Roles role = Roles.user
 
 
     static constraints = {

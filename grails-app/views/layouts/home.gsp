@@ -25,8 +25,7 @@
                 <a href="case/case.html"><i class="iconfont icon-iconmingxinganli"></i>案例</a>
             </li>
             <li class="layui-nav-item">
-                <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架
-                </a>
+                <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架</a>
             </li>
         </ul>
 

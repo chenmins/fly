@@ -1,9 +1,9 @@
-package fly
+package tv.xza.fly
 
-import grails.testing.web.taglib.TagLibUnitTest
+import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-class LoginTagLibSpec extends Specification implements TagLibUnitTest<LoginTagLib> {
+class HtmlControllerSpec extends Specification implements ControllerUnitTest<HtmlController> {
 
     def setup() {
     }
