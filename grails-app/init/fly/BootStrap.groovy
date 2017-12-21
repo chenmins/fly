@@ -42,10 +42,12 @@ class BootStrap {
             topic.replyCount = 2
             topic.feiwen = 20
             topic.top = true
+            topic.hot = true
             topic.star = true
+            topic.verify = true
             topic.topicBody = new TopicBody(body:"这里是正文，你可以删除")
             topic.addToTopicReply(new TopicReply(user:User.get(1),body:'回帖1'))
-            topic.addToTopicReply(new TopicReply(user:User.get(2),body:'回帖2'))
+            topic.addToTopicReply(new TopicReply(user:User.get(2),body:'回帖2',good: true))
             topic.save();
         }
     }

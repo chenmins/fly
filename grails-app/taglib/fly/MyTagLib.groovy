@@ -45,14 +45,6 @@ class MyTagLib {
         }
     }
 
-    def topTopic5={attr, body ->
-        def var = attr.var ?: "topic"
-        def cols = Topic.findAllByTop(true,[max: 5, offset: 0, sort: "id", order: "desc"]);
-        cols.each {col ->
-            out <<  body((var):col)
-        }
-    }
-
     def topTopic={attr, body ->
         def max = attr.max ?: 5
         def offset = attr.offset ?: 0
@@ -63,13 +55,77 @@ class MyTagLib {
         }
     }
 
+    def hotTopic={attr, body ->
+        def max = attr.max ?: 5
+        def offset = attr.offset ?: 0
+        def var = attr.var ?: "topic"
+        def cols = Topic.findAllByHot(true,[max: max, offset:offset, sort: "id", order: "desc"]);
+        cols.each {col ->
+            out <<  body((var):col)
+        }
+    }
+
+    def topic = { attr, body ->
+        if(attr.id==null)
+            return;
+        def var = attr.var ?: "topic"
+        def topic = Topic.get(attr.id)
+        out << body((var):topic)
+    }
+
+    def isOwner = { attr, body ->
+        if(attr.id==null)
+            return;
+        if(session.user == null)
+            return
+        if(attr.id != session.user.id)
+            return
+        out << body()
+    }
+
+    def hasAuthority = { attr, body ->
+        if(attr.id==null)
+            return;
+        if(session.user == null)
+            return
+        if(session.user.role == Roles.admin){
+            out << body()
+            return
+        }
+        if(attr.id != session.user.id)
+            return
+        out << body()
+    }
+
+    def replyGood = { attr, body ->
+        if(attr.id==null)
+            return;
+        def var = attr.var ?: "reply"
+        def reply = TopicReply.findByTopicAndGood(Topic.get(attr.id),true)
+        if(reply!=null)
+            out << body((var):reply)
+    }
+
+    def replyOther = { attr, body ->
+        if(attr.id==null)
+            return;
+        def var = attr.var ?: "reply"
+        def max = attr.max ?: 5
+        def offset = attr.offset ?: 0
+        def reply = TopicReply.findAllByTopicAndGood(Topic.get(attr.id),false,
+                [max: max, offset:offset, sort: "id", order: "desc"]
+        )
+        reply.each { r ->
+            out << body((var):r)
+        }
+    }
+
     def user = { attr, body ->
         if(attr.id==null)
             return;
         def var = attr.var ?: "user"
         def user = User.get(attr.id)
         out << body((var):user)
-
     }
 
     def smileDate = { attr, body ->

@@ -4,7 +4,7 @@ class TopicBody {
 
     String body
 
-    static belongsTo = Topic
+    static belongsTo = [topic: Topic]
 
     static constraints = {
     }
