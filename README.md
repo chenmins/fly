@@ -18,11 +18,11 @@ sudo docker run -it --rm --name maven-build -e JAVA_HOME=/usr/java/jdk1.7.0_80/ 
 ```
 **测试运行生产环境**
 ```sh
-sudo docker run -it --rm --name maven-build -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
+sudo docker run -it --rm --name maven-build -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-0.1.war
 ```
 **容器化运行生产环境**
 ```sh
-sudo docker run -d --name fly -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
+sudo docker run -d --name fly -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-0.1.war
 ```
 **访问生产环境**
 
