@@ -1,26 +1,26 @@
-²âÊÔoracle-7-jdk°æ±¾
+ï»¿**æµ‹è¯•oracle-7-jdkç‰ˆæœ¬**
 ```sh
 sudo docker run -it --rm chenmins/java-centos:oracle-7-jdk java -version
 ```
-ÏÂÔØ´úÂë
+**githubä¸‹è½½ä»£ç **
 ```sh
 git clone https://github.com/chenmins/fly.git
 cd fly
 chmod a+x *w
 ```
-¿ª·¢»·¾³ÔËĞĞ´úÂë
+**å¼€å‘ç¯å¢ƒè¿è¡Œä»£ç **
 ```sh
 sudo docker run -it --rm --name maven-build -p 8888:8080 -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/grailsw run-app
 ```
-´ò°üÉú²ú»·¾³
+**æ‰“åŒ…ç”Ÿäº§ç¯å¢ƒ**
 ```sh
 sudo docker run -it --rm --name maven-build -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/grailsw war
 ```
-²âÊÔÔËĞĞÉú²ú»·¾³
+**æµ‹è¯•è¿è¡Œç”Ÿäº§ç¯å¢ƒ**
 ```sh
-sudo docker run -it --rm --name maven-build -p 8888:8080 -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
+sudo docker run -it --rm --name maven-build -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
 ```
-ÈİÆ÷»¯ÔËĞĞÉú²ú»·¾³
+**å®¹å™¨åŒ–è¿è¡Œç”Ÿäº§ç¯å¢ƒ**
 ```sh
-run -d --name fly -p 8888:8080 -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
+sudo docker run -d --name fly -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
 ```
