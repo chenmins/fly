@@ -24,3 +24,6 @@ sudo docker run -it --rm --name maven-build -p 8888:8080 -v "$PWD":/root chenmin
 ```sh
 sudo docker run -d --name fly -p 8888:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/build/libs/fly-*.war
 ```
+**访问生产环境**
+
+[http://127.0.0.1:8888/](http://127.0.0.1:8888/)
