@@ -42,6 +42,9 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
+                                <g:if test="${flash.real!=null}">
+                                    <input type="hidden" name="real" value="${flash.real}" />
+                                </g:if>
                                 <button class="layui-btn" lay-filter="*">立即登录</button>
                                 <span style="padding-left:20px;">
                                     <a href="${createLink(controller: 'auth', action: 'forget')}">忘记密码？</a>
@@ -61,6 +64,10 @@
         </div>
     </div>
 </div>
-
+<g:if test="${flash.message!=null}" >
+    <script type="text/javascript">
+        alert("${flash.message}")
+    </script>
+</g:if>
 </body>
 </html>

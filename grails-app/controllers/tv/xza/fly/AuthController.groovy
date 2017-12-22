@@ -99,17 +99,17 @@ class AuthController {
         flash.title = "登录结果"
         if (user == null) {
             flash.message ="帐号秘密为空"
-            return render(view: 'tip')
+            return render(view: 'login')
         }
         boolean captchaValid = simpleCaptchaService.validateCaptcha(params.vercode)
         if(!captchaValid){
             flash.message ="验证码不正确"
-            return render(view: 'tip')
+            return render(view: 'login')
         }
         def u = User.findByEmail(user.email)
         if(u==null){
             flash.message ="${user.email}帐号不存在"
-            return render(view: 'tip')
+            return render(view: 'login')
         }
         if(user.password == u.password){
             session.user = u;
@@ -117,6 +117,15 @@ class AuthController {
         }else{
             flash.message ="密码error"
         }
-        return render(view: 'tip')
+        flash.title = '提示信息'
+        if(params.real!=null){
+            flash.redirect = params.real
+            flash.message = '登录成功，即将返回上一个页面'
+            redirect(controller: 'tip', action: 'index')
+            return
+        }
+        flash.message = '回帖成功，即将返回首页'
+        redirect(controller: 'index', action: 'index')
+        return
     }
 }

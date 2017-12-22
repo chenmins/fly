@@ -229,7 +229,7 @@
                         </g:if>
                     </ul>
 
-                    <g:render template="../template/replyForm"></g:render>
+                    <g:render template="../template/replyForm" var="${topic}"></g:render>
 
                 </div>
             </div>

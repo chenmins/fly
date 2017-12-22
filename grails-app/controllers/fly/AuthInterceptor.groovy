@@ -5,6 +5,7 @@ class AuthInterceptor {
 
     AuthInterceptor() {
         match(controller:"self")// using strings
+        match(controller:"post")// using strings
         //match(controller: ~/(author|publisher)/) // using regex
         //matchAll().excludes(controller:"user")
     }
@@ -17,6 +18,7 @@ class AuthInterceptor {
         if(isLogin()){
             return true
         }else{
+            flash.real =  request.getRequestURI()
             redirect(controller: 'auth', action: 'login')
             return false
         }

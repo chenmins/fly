@@ -27,6 +27,8 @@ class Topic {
     boolean hot = false
     //发布时间
     Date releaseDate = new Date()
+    //評論時間
+    Date replyDate = new Date()
 
     static hasMany = [topicReply: TopicReply]
 

@@ -16,14 +16,14 @@
 </div>
 <g:if test="${flash.back!=null&&flash.back==true}" >
     <script type="text/javascript">
-        //延时2秒
-        setTimeout("window.history.back();",2000);
+        //延时3秒
+        setTimeout("window.history.back();",3000);
     </script>
 </g:if>
 <g:if test="${flash.redirect!=null}" >
     <script type="text/javascript">
-        //延时2秒
-        setTimeout('window.location.href="${flash.redirect}";',2000);
+        //延时3秒
+        setTimeout('window.location.href="${flash.redirect}";',3000);
     </script>
 </g:if>
 </body>
