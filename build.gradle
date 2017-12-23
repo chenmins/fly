@@ -28,9 +28,16 @@ repositories {
 dependencies {
 
     //新的插件开始
+    //二维码
     compile 'org.grails.plugins:qrcode:0.9'
+    //发邮件
     compile 'org.grails.plugins:mail:2.0.0'
+    //验证码
     compile 'domurtag.plugins:grails-simple-captcha:1.0.0-grails3'
+    //add rest api start
+    compile 'org.grails.plugins:jaxrs-jersey1:3.0.4'
+    compile 'org.grails.plugins:jaxrs-swagger-ui:3.0.4'
+    //add rest api end
     //新的插件结束
 
     compile "org.springframework.boot:spring-boot-starter-logging"
