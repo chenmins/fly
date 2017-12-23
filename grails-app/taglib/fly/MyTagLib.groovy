@@ -55,6 +55,16 @@ class MyTagLib {
         }
     }
 
+    def firstTopic={attr, body ->
+        def max = attr.max ?: 15
+        def offset = attr.offset ?: 0
+        def var = attr.var ?: "topic"
+        def cols = Topic.findAllByTop(false,[max: max, offset:offset, sort: "id", order: "desc"]);
+        cols.each {col ->
+            out <<  body((var):col)
+        }
+    }
+
     def hotTopic={attr, body ->
         def max = attr.max ?: 5
         def offset = attr.offset ?: 0

@@ -12,7 +12,8 @@ class PostController {
         topic.save()
         flash.title = '提示信息'
         flash.message = '发贴成功，即将返回'
-        flash.back = true
+        //flash.back = true
+        flash.redirect = "/html/index/${topic.id}"
         redirect(controller: 'tip', action: 'index')
     }
 
