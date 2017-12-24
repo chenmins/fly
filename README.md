@@ -13,6 +13,10 @@ sudo docker run -it --rm --name maven-build -e JAVA_HOME=/usr/java/jdk1.7.0_80/ 
 git clone https://github.com/chenmins/fly.git
 sudo chmod a+x fly/*
 ```
+**修改电子邮箱地址和数据库**
+```sh
+sudo vi fly/grails-app/conf/application.yml
+```
 **开发环境运行代码**
 ```sh
 sudo docker run -it --rm --name maven-build -p 8080:8080 -w /root/fly -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/fly/grailsw run-app
