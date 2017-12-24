@@ -10,6 +10,9 @@ class Column {
 
     Roles role = Roles.user
 
+    static mapping = {
+        table('fly_column')
+    }
 
     static constraints = {
     }

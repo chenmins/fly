@@ -14,6 +14,10 @@ class TopicReply {
 
     static belongsTo = [topic: Topic]
 
+    static mapping = {
+        table('fly_topic_reply')
+    }
+
     static constraints = {
     }
 }

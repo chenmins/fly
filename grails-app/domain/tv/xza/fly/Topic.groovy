@@ -32,6 +32,10 @@ class Topic {
 
     static hasMany = [topicReply: TopicReply]
 
+    static mapping = {
+        table('fly_topic')
+    }
+
     static constraints = {
     }
 }
