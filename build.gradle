@@ -37,6 +37,7 @@ dependencies {
     //add rest api start
     compile 'org.grails.plugins:jaxrs-jersey1:3.0.4'
     compile 'org.grails.plugins:jaxrs-swagger-ui:3.0.4'
+    compile 'mysql:mysql-connector-java:5.1.24'
     //add rest api end
     //新的插件结束
 
