@@ -228,8 +228,9 @@
                             <li class="fly-none">消灭零回复</li>
                         </g:if>
                     </ul>
-
-                    <g:render template="../template/replyForm" var="${topic}"></g:render>
+                    <my:isLogin>
+                        <g:render template="../template/replyForm" var="${topic}"></g:render>
+                    </my:isLogin>
 
                 </div>
             </div>
@@ -245,6 +246,7 @@
             </div>
         </div>
     </div>
+    <script src="/api/common/getTopicReadCountAndInc/${topic.id}"></script>
 
     </body>
 </my:topic>
