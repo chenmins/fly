@@ -1,5 +1,7 @@
 package tv.xza.fly
 
+import grails.converters.JSON
+
 class User {
 
     String username
@@ -12,5 +14,10 @@ class User {
     }
 
     static constraints = {
+    }
+
+    @Override
+    String toString() {
+        return this as JSON
     }
 }

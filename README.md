@@ -36,3 +36,14 @@ sudo docker run -d --name fly -p 8080:8080 -v "$PWD":/root chenmins/java-centos:
 **访问生产环境**
 
 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+**参考资料**
+http://docs.grails.org/snapshot/guide/single.html
+http://gorm.grails.org/6.0.x/hibernate/manual/
+http://plugins.grails.org/
+http://docs.grails.org/latest/guide/theWebLayer.html#cors
+http://budjb.github.io/grails-jaxrs/3.x/latest/guide/introduction.html
+https://jersey.github.io/documentation/latest/user-guide.html
+http://blog.csdn.net/sikaodeluwei/article/details/18005845
+http://blog.csdn.net/qq_28562059/article/details/52609773
+http://blog.csdn.net/change_on/article/details/71191894

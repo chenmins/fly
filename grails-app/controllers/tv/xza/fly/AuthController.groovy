@@ -1,6 +1,11 @@
 package tv.xza.fly
 
+import javax.servlet.http.Cookie
+
 class AuthController {
+
+    def authService
+
     UserService userService
     def mailService
     def simpleCaptchaService
@@ -26,6 +31,12 @@ class AuthController {
 
     def logout(User user) {
         session.user = null;
+        Cookie oItem;
+        // 因为Cookie 中不允许保存特殊字符, 所以采用 BASE64 编码，CookieUtil.encode()是BASE64编码方法,略..
+        oItem = new Cookie("token", "");
+        oItem.setMaxAge(-1); //关闭浏览器后，cookie立即失效
+        oItem.setPath("/");
+        response.addCookie(oItem);
         return render(view: 'login')
     }
 
@@ -106,18 +117,34 @@ class AuthController {
             flash.message ="验证码不正确"
             return render(view: 'login')
         }
-        def u = User.findByEmail(user.email)
+        def u = authService.login(user.email,user.password)
         if(u==null){
-            flash.message ="${user.email}帐号不存在"
-            return render(view: 'login')
+            flash.message ="${user.email}帐号不存在或密码错误"
+            return render(view: 'tip')
         }
-        if(user.password == u.password){
-            session.user = u;
-            flash.message ="密码ok"
-        }else{
-            flash.message ="密码error"
-        }
+//        def u = User.findByEmail(user.email)
+//        if(u==null){
+//            flash.message ="${user.email}帐号不存在"
+//            return render(view: 'login')
+//        }
+//        if(user.password == u.password){
+//            session.user = u;
+//            flash.message ="密码ok"
+//        }else{
+//            flash.message ="密码error"
+//        }
         flash.title = '提示信息'
+        //cookies加入JWT 的用户信息
+        u.password = null
+        def auths = u.toString()
+        String token = JWT.sign(auths, 60L* 1000L* 30L);
+        println "login is token:${token}"
+        Cookie oItem;
+        // 因为Cookie 中不允许保存特殊字符, 所以采用 BASE64 编码，CookieUtil.encode()是BASE64编码方法,略..
+        oItem = new Cookie("token", token);
+        oItem.setMaxAge(-1); //关闭浏览器后，cookie立即失效
+        oItem.setPath("/");
+        response.addCookie(oItem);
         if(params.real!=null){
             flash.redirect = params.real
             flash.message = '登录成功，即将返回上一个页面'
