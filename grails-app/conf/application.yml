@@ -1,4 +1,17 @@
 ---
+org:
+    grails:
+        jaxrs:
+            swagger:
+                enabled: true
+                resourcePackage: tv.xza
+                version: '1.0'
+                title: JAX-RS Fly API
+                description: An example set of APIs using the JAX-RS and Grails integration.
+                contact: Chenmin
+                license: Apache 2.0
+                licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+---
 grails:
     profile: web
     codegen:
@@ -32,10 +45,17 @@ endpoints:
 ---
 grails:
     mail:
-        host : 'mail.bupt.edu.cn'
-        port : '25'
-        username : 'chen.min@bupt.edu.cn'
-        password : '真是密码'
+        default :
+            from : 'ibm_chen@163.com'
+        host : 'smtp.163.com'
+        port : '465'
+        username : 'ibm_chen@163.com'
+        password : '真实密码'
+        props :
+            mail.smtp.auth : 'true'
+            mail.smtp.socketFactory.port : '465'
+            mail.smtp.socketFactory.class : 'javax.net.ssl.SSLSocketFactory'
+            mail.smtp.socketFactory.fallback : 'false'
     mime:
         disable:
             accept:
