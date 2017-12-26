@@ -24,6 +24,8 @@ class CommonResource {
 
     def grailsApplication
 
+    CommonService commonService
+
     TopicService topicService
 
     @POST
@@ -84,10 +86,8 @@ class CommonResource {
     @Path('/getTopicReadCountAndInc/{id}')
     @Produces('text/plain')
     @ApiOperation(value="文章阅读++", notes="根据id增加文章阅读数")
-    String getTopicReadCountAndInc(@ApiParam(required = true, value = "文章id") @PathParam("id")long id) {
-        //TODO 临时方案待优化
-        Topic.executeUpdate("update Topic c set c.readCount =  c.readCount+1 where c.id = :id",
-                [id: id])
+    void getTopicReadCountAndInc(@ApiParam(required = true, value = "文章id") @PathParam("id")long id) {
+        commonService.incTopicReadCount(id)
         return
 //        def topic = topicService.get(id)
 //        if (topic == null)

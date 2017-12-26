@@ -11,7 +11,7 @@
                         <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
                     </a>
                     <h2>
-                        <a class="layui-badge">动态</a>
+                        <a class="layui-badge">${topic.column.columnName}</a>
                         <a href="${createLink(controller: 'html', action: 'index',params: [id:topic.id])}">${topic.title}</a>
                     </h2>
                     <div class="fly-list-info">

@@ -2,6 +2,8 @@ package tv.xza.fly
 
 class PostController {
 
+    CommonService commonService
+
     def index() {
 
     }
@@ -28,10 +30,8 @@ class PostController {
         re.user = session.user
         re.body = body
         re.save()
-        //TODO 未生效
-        topic.replyCount = topic.replyCount+1
-        topic.replyDate = new Date()
-        topic.save()
+
+        commonService.incTopicReplyCount(topic.id)
 
         flash.title = '提示信息'
         flash.message = '回帖成功，即将返回'
