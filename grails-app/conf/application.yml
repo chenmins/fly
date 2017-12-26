@@ -15,7 +15,7 @@ org:
 ---
 #系统配置
 fly:
-    site: Chenmin
+    site: 我的网站
 ---
 grails:
 #    #配置文件
