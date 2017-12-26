@@ -1,4 +1,7 @@
 ---
+fly:
+    site: '带我飞'
+---
 #支持swagger文档
 org:
     grails:

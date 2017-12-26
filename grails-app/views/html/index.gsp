@@ -3,7 +3,7 @@
 <my:topic id="${params.id}" var="topic">
     <head>
         <meta name="layout" content="home"/>
-        <title>${topic.title}-社区1221</title>
+        <title>${topic.title}</title>
         <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
     </head>
 

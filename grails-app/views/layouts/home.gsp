@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        <g:layoutTitle default="Grails"/>
+        <g:layoutTitle default="Grails"/> - <g:meta name="fly.site" ></g:meta>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="//ohlo5qp57.qnssl.com/res/layui/css/layui.css">

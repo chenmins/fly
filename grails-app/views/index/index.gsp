@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="home"/>
-    <title>主页面-社区1222</title>
+    <title>主页面</title>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 </head>
 
