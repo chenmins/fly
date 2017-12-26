@@ -14,7 +14,7 @@ public class JWT {
 
     private static final String PAYLOAD = "payload";
 
-     
+
     public static <T> String sign(T object, long maxAge) {
         try {
             final JWTSigner signer = new JWTSigner(SECRET);
@@ -29,7 +29,7 @@ public class JWT {
         }
     }
 
-     
+
     public static <T> T unsign(String jwt, Class<T> classT) {
         final JWTVerifier verifier = new JWTVerifier(SECRET);
         try {
