@@ -1,4 +1,4 @@
-﻿package tv.xza.fly;
+package tv.xza.fly;
 
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
@@ -14,7 +14,7 @@ public class JWT {
 
     private static final String PAYLOAD = "payload";
 
-    //加密，传入一个对象和有效期
+     
     public static <T> String sign(T object, long maxAge) {
         try {
             final JWTSigner signer = new JWTSigner(SECRET);
@@ -29,7 +29,7 @@ public class JWT {
         }
     }
 
-    //解密，传入一个加密后的token字符串和解密后的类型
+     
     public static <T> T unsign(String jwt, Class<T> classT) {
         final JWTVerifier verifier = new JWTVerifier(SECRET);
         try {
