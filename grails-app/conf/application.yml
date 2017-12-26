@@ -1,7 +1,4 @@
 ﻿---
-fly:
-    site: Chenmin
----
 #支持swagger文档
 org:
     grails:
@@ -15,6 +12,10 @@ org:
                 contact: Chenmin
                 license: Apache 2.0
                 licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
+---
+#系统配置
+fly:
+    site: Chenmin
 ---
 grails:
 #    #配置文件
