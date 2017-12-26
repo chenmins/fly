@@ -1,6 +1,6 @@
 ﻿---
 fly:
-    site: '带我飞'
+    site: 'fly'
 ---
 #支持swagger文档
 org:
