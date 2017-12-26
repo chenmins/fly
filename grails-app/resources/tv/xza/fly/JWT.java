@@ -1,4 +1,4 @@
-package tv.xza.fly;
+﻿package tv.xza.fly;
 
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
