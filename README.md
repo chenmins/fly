@@ -27,11 +27,11 @@ sudo docker run -it --rm --name maven-build -w /root/fly -e JAVA_OPTS="-Dfile.en
 ```
 **测试运行生产环境**
 ```sh
-sudo docker run -it --rm --name maven-build -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m  -jar /root/fly/build/libs/fly-0.1.war
+sudo docker run -it --rm --name maven-build -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Duser.timezone=GMT+08 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m  -jar /root/fly/build/libs/fly-0.1.war
 ```
 **容器化运行生产环境**
 ```sh
-sudo docker run -d --name fly -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m -jar /root/fly/build/libs/fly-0.1.war
+sudo docker run -d --name fly -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Duser.timezone=GMT+08 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m -jar /root/fly/build/libs/fly-0.1.war
 ```
 **访问生产环境**
 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
