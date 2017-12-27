@@ -19,19 +19,19 @@ sudo vi fly/grails-app/conf/application.yml
 ```
 **开发环境运行代码**
 ```sh
-sudo docker run -it --rm --name maven-build -p 8080:8080 -w /root/fly -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/fly/grailsw run-app
+sudo docker run -it --rm --name maven-build -w /root/fly -e JAVA_OPTS="-Dfile.encoding=UTF-8" -e JAVA_OPTS="-Dfile.encoding=UTF-8" -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/fly/grailsw run-app
 ```
 **打包生产环境**
 ```sh
-sudo docker run -it --rm --name maven-build -w /root/fly -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/fly/grailsw war
+sudo docker run -it --rm --name maven-build -w /root/fly -e JAVA_OPTS="-Dfile.encoding=UTF-8" -e JAVA_HOME=/usr/java/jdk1.7.0_80/ -v "$PWD":/root chenmins/java-centos:oracle-7-jdk /root/fly/grailsw war
 ```
 **测试运行生产环境**
 ```sh
-sudo docker run -it --rm --name maven-build -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/fly/build/libs/fly-0.1.war
+sudo docker run -it --rm --name maven-build -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m  -jar /root/fly/build/libs/fly-0.1.war
 ```
 **容器化运行生产环境**
 ```sh
-sudo docker run -d --name fly -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -jar /root/fly/build/libs/fly-0.1.war
+sudo docker run -d --name fly -p 8080:8080 -v "$PWD":/root chenmins/java-centos:oracle-7-jdk java -Dfile.encoding=UTF-8 -Xmx900m -Xms200m -Xss1024k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=128m -jar /root/fly/build/libs/fly-0.1.war
 ```
 **访问生产环境**
 [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
