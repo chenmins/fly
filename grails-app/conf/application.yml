@@ -1,5 +1,5 @@
 ---
-#鏀寔swagger鏂囨。
+#支持swagger文档
 org:
     grails:
         jaxrs:
@@ -13,19 +13,19 @@ org:
                 license: Apache 2.0
                 licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
 ---
-#绯荤粺閰嶇疆
+#系统配置
 fly:
-    site: 鎴戠殑缃戠珯
+    site: 我的网站1
 ---
 grails:
-#    #閰嶇疆鏂囦欢
+#    #配置文件
 #    config:
 #        locations:
 #            classpath : 'fly.properties'
-    #鏀寔璺ㄥ煙
+    #支持跨域
     cors:
         enabled: true
-    #鏀寔閭欢
+    #支持邮件
     mail:
         default :
             from : 'ibm_chen@163.com'
