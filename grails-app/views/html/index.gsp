@@ -174,7 +174,7 @@
 
                                     <div class="fly-detail-user">
                                         <a href="" class="fly-link">
-                                            <cite>${topic.user.username}</cite>
+                                            <cite>${reply.user.username}</cite>
                                             <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
                                             <i class="layui-badge fly-badge-vip">VIP3</i>
                                         </a>
