@@ -4,7 +4,7 @@
         <ul class="layui-clear">
             <li class="layui-hide-xs layui-this"><a href="/">首页</a></li>
             <my:topColumn>
-                <li><a href="jie/${it.id}">
+                <li><a href="${createLink(controller: 'list', action: 'index',params: [id:it.id])}">
                     ${it.columnName}
                     <g:if test="${it.badge==true}">
                         <span class="layui-badge-dot"></span>
