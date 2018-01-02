@@ -39,6 +39,15 @@
     }).extend({
         fly: 'index'
     }).use('fly');
+    $("prevLink").each(function(){
+        $(this).attr('class','laypage-prev');
+    });
+    $("currentStep").each(function(){
+        $(this).attr('class','laypage-curr');
+    });
+    $("nextLink").each(function(){
+        $(this).attr('class','laypage-next');
+    });
 </script>
 
 </body>
