@@ -23,7 +23,9 @@
 
 <g:render template="../template/footer"></g:render>
 
+<script src="//apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
 <script src="//ohlo5qp57.qnssl.com/res/layui/layui.js"></script>
+
 <script>
     layui.cache.page = '';
     layui.cache.user = {
