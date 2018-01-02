@@ -45,13 +45,13 @@
     $(function(){
         //分页测试
         $("prevLink").each(function(){
-            $(this).attr('class','laypage-prev');
+            $(this).addClass("laypage-prev");
         });
         $("currentStep").each(function(){
-            $(this).attr('class','laypage-curr');
+            $(this).addClass("laypage-curr");
         });
         $("nextLink").each(function(){
-            $(this).attr('class','laypage-next');
+            $(this).addClass('laypage-next');
         });
     });
 
