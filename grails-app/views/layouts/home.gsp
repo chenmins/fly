@@ -44,13 +44,13 @@
 
     $(function(){
         //分页测试
-        $("prevLink").each(function(){
+        $(".prevLink").each(function(){
             $(this).addClass("laypage-prev");
         });
-        $("currentStep").each(function(){
+        $(".currentStep").each(function(){
             $(this).addClass("laypage-curr");
         });
-        $("nextLink").each(function(){
+        $(".nextLink").each(function(){
             $(this).addClass('laypage-next');
         });
     });
