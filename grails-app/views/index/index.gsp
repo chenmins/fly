@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="home"/>
-    <meta name="baidu-site-verification" content="NdoQJxMTb0" />
+    <meta baidu-gxt-verify-token="67314682bfcbcba18436fa451ea3bebf">
+    <meta name="baidu-site-verification" content="4t6s1eivuw" />
     <title>主页面</title>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 </head>
