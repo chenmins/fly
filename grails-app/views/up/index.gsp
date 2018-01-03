@@ -40,6 +40,14 @@
             element.progress('demo', n+'%');
         });
     }
+    function checkEnd(str,end){
+        var pos = str.lastIndexOf(end);
+        if(pos === -1){
+            return false;
+        }else{
+            return pos + end.length === str.length;
+        }
+    }
     function returnFloat(value){
         var value=Math.round(parseFloat(value)*100)/100;
         var xsd=value.toString().split(".");
@@ -122,6 +130,9 @@
                 var res = $.parseJSON(info.response);
                 var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
                 var a='<a href="'+sourceLink+'">'+sourceLink+'</a><br/>';
+                if(checkEnd(res.key,".jpg")||checkEnd(res.key,".png")||checkEnd(res.key,".gif")){
+                    $('#up').append("<img src='"+sourceLink+"' />");
+                }
                 $('#up').append(a);
                 process(100)
             },
