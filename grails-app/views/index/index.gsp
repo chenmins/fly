@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="home"/>
+    <meta name="baidu-site-verification" content="NdoQJxMTb0" />
     <title>主页面</title>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 </head>
