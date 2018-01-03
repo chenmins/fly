@@ -72,13 +72,13 @@
                         </li>
                         </g:each>
                     </ul>
-                    <g:if test="${list==null}">
+                    <g:if test="${list==null||list.isEmpty()}">
                         <div class="fly-none">没有相关数据</div>
                     </g:if>
 
                     <div style="text-align: center">
                         <div class="laypage-main">
-                            <g:paginate total="${count ?: 0}" id="${params.id}" maxsteps="7" max="15"/>
+                            <g:paginate total="${count ?: 0}" id="${params.id}" maxsteps="5" max="15"/>
                            %{--
                             <span class="laypage-curr">1</span><a href="/jie/page/2/">2</a>
                             <a href="/jie/page/148/" class="laypage-last" title="尾页">尾页</a>

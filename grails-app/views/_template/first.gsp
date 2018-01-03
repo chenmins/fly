@@ -59,6 +59,6 @@
 </ul>
 <div style="text-align: center">
     <div class="laypage-main">
-        <a href="${createLink(controller: 'list', action: 'index',params: [id:1])}" class="laypage-next">更多求解</a>
+        <a href="${createLink(controller: 'list', action: 'index',params: [id:1,max:15,offset:15])}" class="laypage-next">更多求解</a>
     </div>
 </div>
