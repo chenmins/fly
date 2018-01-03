@@ -41,6 +41,8 @@ dependencies {
     //add rest api end
     //JWT 工具包
     compile 'com.auth0:java-jwt:2.2.0'
+    //七牛文件上传
+    compile 'com.qiniu:qiniu-java-sdk:7.2.+'
     //新的插件结束
 
     compile "org.springframework.boot:spring-boot-starter-logging"
