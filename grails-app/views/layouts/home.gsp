@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="//ohlo5qp57.qnssl.com/res/layui/css/layui.css">
     <link rel="stylesheet" href="//ohlo5qp57.qnssl.com/res/css/global.css">
+    <script src="//apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
     <g:layoutHead/>
 </head>
 <body>
@@ -23,7 +24,7 @@
 
 <g:render template="../template/footer"></g:render>
 
-<script src="//apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+
 <script src="//ohlo5qp57.qnssl.com/res/layui/layui.js"></script>
 
 <script>
@@ -56,6 +57,19 @@
     });
 
 </script>
-
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 </body>
 </html>
