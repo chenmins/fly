@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//ohlo5qp57.qnssl.com/res/layui/css/layui.css">
     <link rel="stylesheet" href="//ohlo5qp57.qnssl.com/res/css/global.css">
     <script src="//apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <script src="//ohlo5qp57.qnssl.com/res/layui/layui.js"></script>
     <g:layoutHead/>
 </head>
 <body>
@@ -23,9 +24,6 @@
 <g:layoutBody/>
 
 <g:render template="../template/footer"></g:render>
-
-
-<script src="//ohlo5qp57.qnssl.com/res/layui/layui.js"></script>
 
 <script>
     layui.cache.page = '';

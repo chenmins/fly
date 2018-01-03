@@ -17,18 +17,43 @@
         <div class="fly-none">
             <p>这个上传页面</p>
             <div id="container">
-                <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>选择文件</span>
-                </a>
+                <button  id="pickfiles" class="layui-btn layui-btn-danger">上传文件</button>
+            </div>
+            <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
+                <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div><div id="speeds"></div>
             </div>
             <div id="up">
 
             </div>
+
         </div>
     </div>
 </div>
 <script>
+    function speeds(as) {
+        $("#speeds").html(as)
+    }
+    function process(n) {
+        layui.use('element', function(){
+            var $ = layui.jquery
+                ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+            element.progress('demo', n+'%');
+        });
+    }
+    function returnFloat(value){
+        var value=Math.round(parseFloat(value)*100)/100;
+        var xsd=value.toString().split(".");
+        if(xsd.length==1){
+            value=value.toString()+".00";
+            return value;
+        }
+        if(xsd.length>1){
+            if(xsd[1].length<2){
+                value=value.toString()+"0";
+            }
+            return value;
+        }
+    }
     var uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',      // 上传模式，依次退化
         browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
@@ -76,9 +101,14 @@
             },
             'BeforeUpload': function(up, file) {
                 // 每个文件上传前，处理相关的事情
+                // file.id
+                // file.name
             },
             'UploadProgress': function(up, file) {
                 // 每个文件上传时，处理相关的事情
+                var info =(returnFloat(file.speed/ 1024)+ 'KB/s ' + returnFloat((file.loaded / 1024/ 1024))+"MB/"+returnFloat((file.size / 1024/ 1024)) +"MB");
+                process(file.percent)
+                speeds(info)
             },
             'FileUploaded': function(up, file, info) {
                 // 每个文件上传成功后，处理相关的事情
@@ -93,6 +123,7 @@
                 var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
                 var a='<a href="'+sourceLink+'">'+sourceLink+'</a><br/>';
                 $('#up').append(a);
+                process(100)
             },
             'Error': function(up, err, errTip) {
                 //上传出错时，处理相关的事情
