@@ -4,72 +4,91 @@
     <meta name="layout" content="home"/>
     <title>404-社区1222</title>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
-    <asset:javascript src="qiniu.min.js"/>
+    <asset:stylesheet src="simditor.css" />
+    <asset:javascript src="mobilecheck.js" />
 </head>
 
 <body>
 
 <g:render template="../template/nav"></g:render>
 
-<div class="layui-container fly-marginTop">
-    <div class="fly-panel">
-        <div class="fly-none">
-            <p>这个上传页面</p>
-
-            <div id="container">
-                <button  id="pickfiles" class="layui-btn layui-btn-danger">上传文件</button>
-                <button  id="getText" class="layui-btn layui-btn-danger">getText</button>
-                <button  id="getContent" class="layui-btn layui-btn-danger">getContent</button>
+<div class="layui-container">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8" id="container">
+            <textarea id="txt-content" data-autosave="editor-content" autofocus></textarea>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-row grid-demo" id="processdiv">
+                <div class="layui-col-md6">
+                    <div id="speeds"></div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
+                        <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+                    </div>
+                </div>
             </div>
-            <textarea id="demo2" style="display: none;"></textarea>
-            <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
-                <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div><div id="speeds"></div>
+            <div class="layui-row grid-demo">
+                <div class="layui-col-md12">
+                    <button id="getAll" class="layui-btn">获得内容</button>
+                    <button  id="pickfiles" class="layui-btn layui-btn-danger">上传文件</button>
+                </div>
+                <div class="layui-col-md12">
+                    <div id="preview"></div>
+                </div>
             </div>
-            <div id="up">
-
-            </div>
-
         </div>
     </div>
 </div>
+
+<asset:javascript src="jquery-2.2.0.min.js"/>
+<asset:javascript src="module.js"/>
+<asset:javascript src="uploader.js"/>
+<asset:javascript src="hotkeys.js"/>
+<asset:javascript src="simditor.js"/>
+<asset:javascript src="qiniu.min.js"/>
 <script>
-    var layedit,editindex
-    function initEdit(id) {
-        layui.use('layedit', function(){
-            layedit = layui.layedit;
-            editindex = layedit.build(id,
-                {tool: [
-                        'strong' //加粗
-                        ,'italic' //斜体
-                        ,'underline' //下划线
-                        ,'del' //删除线
-                        ,'|' //分割线
-                        ,'left' //左对齐
-                        ,'center' //居中对齐
-                        ,'right' //右对齐
-                        ,'link' //超链接
-                        ,'unlink' //清除链接
-                        // ,'face' //表情
-                        // ,'image' //插入图片
-                        // ,'help' //帮助
-                    ]}
-            ); //建立编辑器
+    var $preview, editor, mobileToolbar, toolbar;
+    (function() {
+        $(function() {
+            Simditor.locale = 'en-US';
+            toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+            mobileToolbar = ["bold", "underline", "strikethrough", "color", "ul", "ol"];
+            if (mobilecheck()) {
+                toolbar = mobileToolbar;
+            }
+            editor = new Simditor({
+                textarea: $('#txt-content'),
+                placeholder: '这里输入文字...',
+                toolbar: toolbar,
+                pasteImage: true,
+                defaultImage: 'assets/images/image.png',
+                upload: location.search === '?upload' ? {
+                    url: '/upload'
+                } : false
+            });
+            $preview = $('#preview');
+            if ($preview.length > 0) {
+                return editor.on('valuechanged', function(e) {
+                    return $preview.html(editor.getValue());
+                });
+            }
+
         });
-    }
-    function initEVT(id) {
-        $('#getContent').click(function(){
-            alert(layedit.getContent(editindex))
+
+    }).call(this);
+
+    $(function(){
+        $('#getAll').click(function () {
+            layer.msg(editor.getValue());
         });
-        $('#getText').click(function(){
-            alert(layedit.getText(editindex))
-        });
-    }
-    initEdit('demo2')
-    initEVT('demo2')
-    function addHTML(id,some) {
-        layedit.sync(editindex);
-        $("#"+id).html(some+"<br/>"+ $("#demo2").html())
-        initEdit(id)
+        $("#processdiv").hide();
+        // $('#putSome').click(function () {
+        //     editor.setValue(editor.getValue()+"<br />aaa");
+        // });
+    });
+    function addHTML(some) {
+        editor.setValue(editor.getValue()+"<br />"+some);
     }
     function speeds(as) {
         $("#speeds").html(as)
@@ -152,6 +171,8 @@
                 // 每个文件上传前，处理相关的事情
                 // file.id
                 // file.name
+                $("#processdiv").show();
+
             },
             'UploadProgress': function(up, file) {
                 // 每个文件上传时，处理相关的事情
@@ -170,15 +191,13 @@
                 var domain = up.getOption('domain');
                 var res = $.parseJSON(info.response);
                 var sourceLink = "http://"+domain +"/"+ res.key; //获取上传成功后的文件的Url
-                var a='<a href="'+sourceLink+'">'+sourceLink+'</a><br/>';
+                var a='<a href="'+sourceLink+'" target="_blank">'+sourceLink+'</a>';
                 if(checkEnd(res.key,".jpg")||checkEnd(res.key,".png")||checkEnd(res.key,".gif")){
-                    // $('#up').append("<img src='"+sourceLink+"' />");
-                    addHTML("demo2","<img src='"+sourceLink+"' />")
-                }else{
-                    addHTML("demo2",a+"<br/>")
+                    addHTML("<img src='"+sourceLink+"' width='400'/>")
                 }
-                // $('#up').append(a);
+                addHTML(a)
                 process(100)
+                $("#processdiv").hide();
             },
             'Error': function(up, err, errTip) {
                 //上传出错时，处理相关的事情
@@ -195,7 +214,6 @@
             }
         }
     });
-
 </script>
 </body>
 </html>

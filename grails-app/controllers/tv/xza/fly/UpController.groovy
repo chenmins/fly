@@ -16,6 +16,10 @@ class UpController {
 
     }
 
+    def sim() {
+
+    }
+
     def json(){
         String accessKey = "_tHGHsfzctpubXOLyclhWWsMIVsN6TEBOTKVTYk1";
         String secretKey = "aMiNGaFW3tosNu5mi3hFSHDmar0yFV8JLaQxCBSI";
